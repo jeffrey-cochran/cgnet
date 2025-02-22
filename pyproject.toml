@@ -1,0 +1,81 @@
+[project]
+name = "cgnet"
+dynamic = ["version"]
+description = "Approximate solution operator for PDEs using Graph Neural Networks"
+readme = "README.md"
+requires-python = ">=3.11, <3.12"
+license = "MIT"
+authors = [
+    { name = "Jeffrey Cochran", email = "jeffrey.david.cochran@gmail.com"},
+]
+keywords = ["galerkin", "bspline", "PDE", "ML", "FEM"]
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "numpy >=1.17,<3",
+    "scipy",
+    "matplotlib",
+    "nutils~=8.8",
+    "nutils-poly >=1,<2",
+    "torch @ https://download.pytorch.org/whl/cu118/torch-2.5.0%2Bcu118-cp311-cp311-linux_x86_64.whl#sha256=94e914f11253ade7d190133baa784e9dc5f078554978cef6216c898a1b1fac65",
+    "torchaudio @ https://download.pytorch.org/whl/cu118/torchaudio-2.5.0%2Bcu118-cp311-cp311-linux_x86_64.whl#sha256=3485b354fcbb43cf3552695f9e89605af2dd496280ed2c36b6813e73fc45aa05",
+    "torchvision @ https://download.pytorch.org/whl/cu118/torchvision-0.20.0%2Bcu118-cp311-cp311-linux_x86_64.whl#sha256=e9a96647082bd13693e6c556c22fb4ce695c33e34d535458a90dc828b8b9f8f8",
+    "torch_geometric~=2.6.1",
+    "pyg_lib @ https://data.pyg.org/whl/torch-2.5.0%2Bcu118/pyg_lib-0.4.0%2Bpt25cu118-cp311-cp311-linux_x86_64.whl",
+    "torch_cluster @ https://data.pyg.org/whl/torch-2.5.0%2Bcu118/torch_cluster-1.6.3%2Bpt25cu118-cp311-cp311-linux_x86_64.whl",
+    "torch_scatter @ https://data.pyg.org/whl/torch-2.5.0%2Bcu118/torch_scatter-2.1.2%2Bpt25cu118-cp311-cp311-linux_x86_64.whl",
+    "torch_sparse @ https://data.pyg.org/whl/torch-2.5.0%2Bcu118/torch_sparse-0.6.18%2Bpt25cu118-cp311-cp311-linux_x86_64.whl",
+    "torch_spline_conv @ https://data.pyg.org/whl/torch-2.5.0%2Bcu118/torch_spline_conv-1.2.2%2Bpt25cu118-cp311-cp311-linux_x86_64.whl"
+]
+
+
+[project.urls]
+Homepage = "https://github.com/jeffrey-cochran/cgnet"
+Issues = "https://github.com/jeffrey-cochran/cgnet/issues"
+
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+]
+dev = [
+    "pytest",
+    "ruff",
+]
+
+
+[tool.hatch.metadata]
+    allow-direct-references = true
+
+
+[tool.hatch.version]
+path = "src/cgnet/__about__.py"
+
+
+[tool.hatch.build.targets.wheel]
+packages = [
+    "src/cgnet"
+]
+
+
+[tool.hatch.envs.test]
+template = "default"
+features = [
+    "test"
+]
+
+
+[tool.hatch.envs.dev]
+template = "default"
+features = [
+    "dev"
+]
